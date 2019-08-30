@@ -7,7 +7,5 @@ export default function List() {
 
     const { notes } = useContext(NotesContext)
 
-    return (
-        notes.map(note => <Note key={note.title} {...note} />)
-    )
+    return notes.map((note, index) => <Note key={index} {...note} />)
 }

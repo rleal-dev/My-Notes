@@ -21,8 +21,6 @@ export default function Header({ setNotes }) {
     const addNote = () => {
         setNotes([...notes, { title, completed: false }])
         setTitle('')
-
-        console.log(notes)
     }
 
     return (
