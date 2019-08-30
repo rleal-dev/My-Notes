@@ -1,4 +1,21 @@
-import React from 'react'
-import './App.css'
+import React, { useState } from 'react'
 
-export default () => <h1>My Notes</h1>
+import NotesContext from './context'
+import GlobalStyle from './styles/global'
+
+import { Header, FormNote, List } from './components'
+
+export default function App() {
+
+    const [notes, setNotes] = useState([])
+
+    return (
+        <NotesContext.Provider value={{ notes }}>
+            <Header />
+            <FormNote setNotes={setNotes} />
+            <List />
+            
+            <GlobalStyle />
+        </NotesContext.Provider>
+    )
+}
