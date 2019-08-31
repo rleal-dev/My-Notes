@@ -1,12 +1,39 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
-import { Container } from './styles'
+import NotesContext from '../../context'
+import { Container, Title, Button } from './styles'
 
-const Note = ({ title }) => {
+const Note = ({ index, title, isCompleted }) => {
+
+    const { notes, setNotes } = useContext(NotesContext)
+
+    const completeNote = index => {
+        const NewNotes = [...notes]
+        NewNotes[index].isCompleted = true
+
+        setNotes(NewNotes)
+    }
+
+    const deleteNote = index => {
+        const NewNotes = [...notes]
+        NewNotes.splice(index, 1)
+        
+        setNotes(NewNotes)
+    }
 
     return (
         <Container>
-            <p>{ title }</p>
+            <Title isCompleted={isCompleted}>{ title }</Title>
+
+            <div>
+                <Button onClick={() => completeNote(index)}>Finalizar</Button>
+                <Button 
+                    danger={true}
+                    onClick={() => deleteNote(index)}
+                >
+                    Excluir
+                </Button>
+            </div>
         </Container>
     )
 }

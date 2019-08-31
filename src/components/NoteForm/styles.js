@@ -6,9 +6,9 @@ export const Container = styled.div`
     input {
         display: block;
         width: 100%;
-        height: calc(2.19rem + 2px);
+        height: calc(2.59rem + 2px);
         padding: .375rem 1rem;
-        font-size: 1rem;
+        font-size: 1.1rem;
         line-height: 1.9;
         color: #495057;
         background-color: #fff;
