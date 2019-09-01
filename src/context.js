@@ -1,5 +1,3 @@
 import { createContext } from 'react'
 
-export default createContext({
-    notes: []
-})
+export default createContext([])

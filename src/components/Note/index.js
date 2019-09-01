@@ -1,20 +1,27 @@
 import React, { useContext } from 'react'
 
+import { MdDelete, MdCheck, MdRefresh } from 'react-icons/md'
+
 import NotesContext from '../../context'
-import { Container, Title, Button } from './styles'
+import { Container, Title, ActionsBox, Button } from './styles'
 
 const Note = ({ index, title, isCompleted }) => {
 
     const { notes, setNotes } = useContext(NotesContext)
 
-    const completeNote = index => {
+    const toggleNote = index => {
         const NewNotes = [...notes]
-        NewNotes[index].isCompleted = true
+        NewNotes[index].isCompleted = ! NewNotes[index].isCompleted
 
         setNotes(NewNotes)
     }
 
     const deleteNote = index => {
+
+        if (! window.confirm('Deseja realmente excluir a nota?')) {
+            return false
+        }
+
         const NewNotes = [...notes]
         NewNotes.splice(index, 1)
         
@@ -25,15 +32,17 @@ const Note = ({ index, title, isCompleted }) => {
         <Container>
             <Title isCompleted={isCompleted}>{ title }</Title>
 
-            <div>
-                <Button onClick={() => completeNote(index)}>Finalizar</Button>
-                <Button 
-                    danger={true}
-                    onClick={() => deleteNote(index)}
-                >
-                    Excluir
+            <ActionsBox>
+                {
+                    ! isCompleted 
+                        ? <Button onClick={() => toggleNote(index)}><MdCheck /></Button>
+                        : <Button warning onClick={() => toggleNote(index)}><MdRefresh /></Button>
+                }
+                
+                <Button danger onClick={() => deleteNote(index)}>
+                    <MdDelete />
                 </Button>
-            </div>
+            </ActionsBox>
         </Container>
     )
 }

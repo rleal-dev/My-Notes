@@ -1,5 +1,9 @@
 import styled from 'styled-components'
 
+export const Container =  styled.div`
+    margin: 20px;
+`
+
 export const EmptyMessage = styled.div`
     display: flex;
     flex-direction: row;
@@ -10,6 +14,5 @@ export const EmptyMessage = styled.div`
     background-color: #f2dede;
     border-color: #ebccd1;
     border-radius: 5px;
-    margin: 10px;
     padding: 15px;
 `
